@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Course view</title>
+        <title>Course View</title>
     </head>
     
     <body>
@@ -17,9 +17,6 @@
     
         <div>
             <a href="index.html">Homepage</a>
-            <br>
-            <br>
-            <br>
         </div>
     
         <main>
@@ -28,10 +25,72 @@
                 <option value="Fall 2023">Fall 2023</option>
                 <option value="Winter 2024">Winter 2024</option>
                 <option value="Fall 2024">Fall 2024</option>
-                <option value="Winter 2025">Winter 2025</option>
+                <option value="Winter 2025" selected>Winter 2025</option>
             </select>
     
             <h2>Enrolled Courses</h2>
             <hr>
-            
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <img width="250px" height="200px" src="course1.jpg">
+                        <p>Course Name: Web Development</p>
+                        <p>Course Code: WD381</p>
+                        <a href="attempt_quiz.html">Attempt Quiz</a>
+                    </td>
+                    <td>
+                        <img width="250px" height="200px" src="course1.jpg">
+                        <p>Course Name: Data Structures</p>
+                        <p>Course Code: DS371</p>
+                        <a href="attempt_quiz.html">Attempt Quiz</a>
+                    </td>
+                    <td>
+                        <img width="250px" height="200px" src="course1.jpg">
+                        <p>Course Name: DBMS</p>
+                        <p>Course Code: DB346</p>
+                        <a href="attempt_quiz.html">Attempt Quiz</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img width="250px" height="200px" src="course1.jpg">
+                        <p>Course Name: Software Testing</p>
+                        <p>Course Code: ST484</p>
+                        <a href="attempt_quiz.html">Attempt Quiz</a>
+                    </td>
+                    <td>
+                        <img width="250px" height="200px" src="course1.jpg">
+                        <p>Course Name: Software Architectures</p>
+                        <p>Course Code: SA396</p>
+                        <a href="attempt_quiz.html">Attempt Quiz</a>
+                    </td>
+                </tr>
+            </table>
+    
+            <h2>Pending Invitations</h2>
+            <hr>
+            <table>
+                <tr>
+                    <td>
+                        <img width="250px" height="200px" src="course2.jpg">
+                        <p>Course Name: Data Science</p>
+                        <p>Course Code: DS102</p>
+                        <button style="background-color: lightgreen;">Accept</button>
+                        <button style="background-color:lightcoral;">Decline</button>
+                    </td>
+                    <td>
+                        <img width="250" height="200px" src="course2.jpg">
+                        <p>Course Name: Machine Learning</p>
+                        <p>Course Code: ML105</p>
+                        <button style="background-color: lightgreen;">Accept</button>
+                        <button style="background-color: lightcoral;">Decline</button>
+                    </td>
+                </tr>
+            </table>
         </main>
+    
+        <footer>
+            <p>&copy; 2025 LMS. All rights reserved.</p>
+        </footer>
+    </body>
+</html>
