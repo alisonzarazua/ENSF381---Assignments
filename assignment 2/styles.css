@@ -54,6 +54,8 @@ footer {
     margin: 0px 500px;
 }
 
+
+
 /* Attempt Quiz Page */
 #attempt_quiz_main {
     text-align: center;
@@ -112,4 +114,53 @@ footer {
 
 .finish_button:hover {
     background-color: #821b1b;
+}
+
+
+
+/* Leaderboard Page */
+td img{
+    width:50px;
+    height:50px;
+    border-radius: 50px;
+    border-width: 1px;
+    border-style: solid;
+}
+td, th {
+    padding: 0px 10px;
+    text-align: center;
+    border-width: 1px;
+    border-style: solid;
+    border-color: white;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#leaderboard_th {
+    background-color: #4CAF50; 
+    color: white; 
+    font-size: xx-large;
+}
+
+.first_place {
+    background-color: #FFD700;
+}
+
+.second_place {
+    background-color: #C0C0C0;
+}
+
+.third_place {
+    background-color: #CD7F32;
+}
+
+.remaining_rows:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.remaining_rows:nth-child(even) {
+    background-color: #e4e2e2;
 }
