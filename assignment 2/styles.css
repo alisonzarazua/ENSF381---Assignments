@@ -1,4 +1,4 @@
-/* Common Styling */
+ /* Common Styling */
 header {
     background-color: #004080;
     padding: 20px;
@@ -42,7 +42,17 @@ footer {
     margin: 20px;
 }
 
+#homepage_main h2 {
+    color: darkblue;
+}
 
+#key_features {
+    font-weight: bold;
+}
+
+#homepage_main ul {
+    margin: 0px 500px;
+}
 
 /* Attempt Quiz Page */
 #attempt_quiz_main {
