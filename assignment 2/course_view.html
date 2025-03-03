@@ -7,6 +7,7 @@
 <html>
     <head>
         <title>Course View</title>
+        <link rel="stylesheet" href="styles.css">
     </head>
     
     <body>
@@ -15,11 +16,11 @@
             <h1>LMS - Course View</h1>
         </header>
     
-        <div>
+        <div class="navbar">
             <a href="index.html">Homepage</a>
         </div>
     
-        <main>
+        <main class="course_view_main">
             <br>
             <br>
             <label for="term">Select Term:</label>
@@ -34,34 +35,34 @@
             <hr>
             <table style="width: 100%;">
                 <tr>
-                    <td>
-                        <img width="250px" height="200px" src="course1.jpg">
+                    <td class="tiles">
+                        <img width="250" src="course1.jpg">
                         <p>Course Name: Web Development</p>
                         <p>Course Code: WD381</p>
                         <a href="attempt_quiz.html">Attempt Quiz</a>
                     </td>
-                    <td>
-                        <img width="250px" height="200px" src="course1.jpg">
+                    <td class="tiles">
+                        <img width="250" src="course1.jpg">
                         <p>Course Name: Data Structures</p>
                         <p>Course Code: DS371</p>
                         <a href="attempt_quiz.html">Attempt Quiz</a>
                     </td>
-                    <td>
-                        <img width="250px" height="200px" src="course1.jpg">
-                        <p>Course Name: DBMS</p>
+                    <td class="tiles">
+                        <img width="250" src="course1.jpg">
+                        <p>Course Name: Database Systems</p>
                         <p>Course Code: DB346</p>
                         <a href="attempt_quiz.html">Attempt Quiz</a>
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <img width="250px" height="200px" src="course1.jpg">
+                    <td class="tiles">
+                        <img width="250" src="course1.jpg">
                         <p>Course Name: Software Testing</p>
                         <p>Course Code: ST484</p>
                         <a href="attempt_quiz.html">Attempt Quiz</a>
                     </td>
-                    <td>
-                        <img width="250px" height="200px" src="course1.jpg">
+                    <td class="tiles">
+                        <img width="250" src="course1.jpg">
                         <p>Course Name: Software Architectures</p>
                         <p>Course Code: SA396</p>
                         <a href="attempt_quiz.html">Attempt Quiz</a>
@@ -74,19 +75,19 @@
             <hr>
             <table>
                 <tr>
-                    <td>
-                        <img width="250px" height="200px" src="course2.jpg">
+                    <td class="tiles">
+                        <img width="250" src="course2.jpg">
                         <p>Course Name: Data Science</p>
                         <p>Course Code: DS102</p>
-                        <button style="background-color: lightgreen;">Accept</button>
-                        <button style="background-color:lightcoral;">Decline</button>
+                        <button id="button_accept">Accept</button>
+                        <button id="button_decline">Decline</button>
                     </td>
-                    <td>
-                        <img width="250" height="200px" src="course2.jpg">
+                    <td class="tiles">
+                        <img width="250" src="course2.jpg">
                         <p>Course Name: Machine Learning</p>
                         <p>Course Code: ML105</p>
-                        <button style="background-color: lightgreen;">Accept</button>
-                        <button style="background-color: lightcoral;">Decline</button>
+                        <button id="button_accept">Accept</button>
+                        <button id="button_decline">Decline</button>
                     </td>
                 </tr>
             </table>
