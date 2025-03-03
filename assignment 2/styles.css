@@ -56,6 +56,7 @@ footer {
 /* Login page */
 .main_loginpage{
     display: flex;
+    text-align: center;
     flex-direction: column;
     align-items: center;
     background-color: #d4d4d4;
