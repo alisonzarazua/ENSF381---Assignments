@@ -87,6 +87,9 @@ footer {
 }
 
 .login_button{
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
     background-color: #008000;
     color: white;
 }
@@ -132,6 +135,8 @@ footer {
     background-color: #4CAF50;
     color: white;
     border-radius: 5px;
+    padding: 10px;
+    border: none;
 }
 
 #button_accept:hover{
@@ -142,6 +147,8 @@ footer {
     background-color: #D32F2F;
     color: white;
     border-radius: 5px;
+    padding: 10px;
+    border: none;
 }
 
 #button_decline:hover{
