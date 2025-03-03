@@ -19,6 +19,7 @@
 .navbar a {
     color: white;
     text-decoration: none;
+    padding: 0 15px;
 }
 
 .navbar a:hover {
@@ -30,6 +31,7 @@ footer {
     color: white;
     padding: 10px;
     text-align: center;
+    margin-top: auto;
 }
 
 
@@ -50,7 +52,9 @@ footer {
 }
 
 #homepage_main ul {
-    margin: 0px 500px;
+    display: inline-block;
+    text-align: left;
+    margin: auto;
 }
 
 /* Login page */
@@ -123,12 +127,14 @@ footer {
     padding: 5px;
 }
 
+
 .tiles {
     background-color: #e6f2ff;
     box-shadow: 5px 5px #e8e8e8;
     padding: 20px;
     margin: 15px;
     border-radius: 10px;
+    width: 33.33%;
 }
 
 #button_accept {
@@ -154,6 +160,7 @@ footer {
 #button_decline:hover{
     background-color: #821b1b;
 }
+
 
 
 /* Attempt Quiz Page */
