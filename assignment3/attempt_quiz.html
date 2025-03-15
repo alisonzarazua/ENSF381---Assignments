@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attempt Quiz - LMS</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <header>
+        <img src="logo.jpg" alt="LMS Logo" style="width: 100px; height: 100px;">
+        <h1>LMS - Learning Management System</h1>
+    </header>
+    <div>
+        <nav>
+            <a href="index.html">Homepage</a>
+            <a href="course_view.html">Courses</a> 
+        </nav>
+    </div>
+    <main class="attemptquiz">
+        <p id="quiz-timer"></p>
+
+        <img src="banner.jpg" alt="Quiz Banner" style="width: 100%;">
+        <div class="quizdetails">
+            <h2>Course Name: Web Development</h2>
+            <h2>Course Code: WD381</h2>
+            <p>Topic: HTML Basics</p>
+            <p>Deadline: 11:59 PM, February 10, 2025</p>
+            <p>Attempts Allowed: 1</p>
+        </div>
+        
+        <h3>Question 1</h3>
+        <p>What does HTML stand for?</p>
+        <div class="Qs">
+            <input type="radio" id="q1a" name="q1" value="Hyper Text Markup Language">
+            <label for="q1a">Hyper Text Markup Language</label><br>
+            <input type="radio" id="q1b" name="q1" value="Home Tool Markup Language">
+            <label for="q1b">Home Tool Markup Language</label><br>
+        </div>
+        <br>
+        <button class="ans">Submit Answer</button>
+        
+        <h3>Question 2</h3>
+        <p>Which of the following are HTML elements? (Select all that apply)</p>
+        <div class="Qs">
+        <input type="checkbox" id="q2a" name="q2" value="<div>">
+        <label for="q2a">&lt;div&gt;</label><br>
+        <input type="checkbox" id="q2b" name="q2" value="<span>">
+        <label for="q2b">&lt;span&gt;</label><br>
+        </div>
+        <br>
+        <button class="ans">Submit Answer</button>
+        
+        <br><br>
+        <a href="leaderboard.html">
+            <button class="FinQz">Finish Quiz</button>
+        </a>
+    </main>
+    <footer>
+        <p>&copy; 2025 LMS. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Timer Logic
+            let timeLeft = 600; 
+            const timerElement = document.getElementById("quiz-timer");
+            
+            function updateTimer() {
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                timerElement.textContent = `Time Remaining: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                if (timeLeft > 0) {
+                    timeLeft--;
+                } else {
+                    window.location.href = "leaderboard.html";
+                }
+            }
+            setInterval(updateTimer, 1000);
+    
+            // Answer Validation
+            const submitButtons = document.querySelectorAll(".ans");
+            const finishQuizButton = document.querySelector(".FinQz");
+    
+            submitButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                    const questionContainer = this.parentElement;
+                    const inputs = questionContainer.querySelectorAll("input");
+                    let answered = false;
+                    
+                    inputs.forEach(input => {
+                        if (input.checked) answered = true;
+                    });
+    
+                    if (!answered) {
+                        alert("Please select an answer before submitting.");
+                    }
+                });
+            });
+    
+            // Score Calculation
+            finishQuizButton.addEventListener("click", function () {
+                let score = 0;
+                
+                // Question 1
+                const q1Answer = document.querySelector("input[name='q1']:checked");
+                if (q1Answer && q1Answer.value === "Hyper Text Markup Language") {
+                    score += 50;
+                }
+                
+                // Question 2
+                const q2Answers = document.querySelectorAll("input[name='q2']:checked");
+                q2Answers.forEach(answer => {
+                    if (answer.value === "<div>" || answer.value === "<span>") {
+                        score += 25;
+                    }
+                });
+              
+                alert(`Your final score is ${score} out of 100.`);
+            });
+        });
+    </script>
+</body>
+</html>
