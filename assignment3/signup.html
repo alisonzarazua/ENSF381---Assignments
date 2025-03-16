@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - LMS</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script>
+        function validateForm() {
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirm_password").value;
+            let email = document.getElementById("email").value;
+            let errorBox = document.getElementById("error-box");
+            errorBox.innerHTML = "";
+
+            let usernameErrors = ["Invalid Username: "];
+            let passwordErrors = ["Invalid Password: "];
+            let emailErrors = ["Invalid Email: "];
+
+            // Regex patterns
+            let usernameRegex = /^[A-Za-z][A-Za-z0-9_-]{2,19}$/;
+            let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+\[\]{}|;:'",.<>?/`~]).{8,}$/;
+            let emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+
+            if (username === "" || password === "" || confirmPassword == "" || email === "") {
+                errorBox.style.border = "1px solid black";
+                errorBox.innerHTML = "All fields are required.";
+                return;
+            }
+
+            // Username Validation
+            if (username.length < 3 || username.length > 20) {usernameErrors.push("Must be 3-20 characters.");}
+            if (!/^[A-Za-z]/.test(username)) {usernameErrors.push("Must start with a letter.");}
+            for (let i = 0; i < username.length; i++) {
+                let char = username[i];
+                if (!(/[A-Za-z0-9_-]/.test(char))) {
+                    usernameErrors.push("Can only include letters, numbers, hyphens (-), and underscores (_).");
+                    break;
+                }
+            }
+
+            // Password Validation
+            let hasUpper = false, hasLower = false, hasNumber = false, hasSpecial = false;
+            for (let i = 0; i < password.length; i++) {
+                let char = password[i];
+                if (/[A-Z]/.test(char)) hasUpper = true;
+                if (/[a-z]/.test(char)) hasLower = true;
+                if (/\d/.test(char)) hasNumber = true;
+                if (/[!@#$%^&*()\-_=+\[\]{}|;:'",.<>?/`~]/.test(char)) hasSpecial = true;
+            }
+
+            if (password.length < 8) {passwordErrors.push("Must be at least 8 characters.")};
+            if (!hasUpper) {passwordErrors.push("Must contain an uppercase letter.")};
+            if (!hasLower) {passwordErrors.push("Must contain a lowercase letter.")};
+            if (!hasNumber) {passwordErrors.push("Must contain a number.")};
+            if (!hasSpecial) {passwordErrors.push("Must contain a special character.")};
+            if (password.includes(" ")) {passwordErrors.push("Cannot contain spaces.")};
+
+            // Email Validation
+            if (email.includes(" ")) {emailErrors.push("Cannot contain spaces.");} 
+            if (!/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(email)) {emailErrors.push("Must be in the form 'example@domain.com'.");}
+
+            // Display all errors
+            validSignUp = true;
+            if (usernameErrors.length > 1) {
+                validSignUp = false;
+                errorBox.style.border = "1px solid black";
+                usernameErrors.forEach(usernameError => {errorBox.innerHTML += usernameError + " ";});
+                errorBox.innerHTML += "<br>";
+            }
+            if (passwordErrors.length > 1) {
+                validSignUp = false;
+                errorBox.style.border = "1px solid black";
+                passwordErrors.forEach(passwordError => {errorBox.innerHTML += passwordError + " ";});
+                errorBox.innerHTML += "<br>";
+            }
+            if (password !== confirmPassword) {
+                validSignUp = false;
+                errorBox.style.border = "1px solid black";
+                errorBox.innerHTML += "Passwords do not match.<br>";
+            }
+            if (emailErrors.length > 1) {
+                validSignUp = false;
+                errorBox.style.border = "1px solid black";
+                emailErrors.forEach(emailError => {errorBox.innerHTML += emailError + " ";});
+                errorBox.innerHTML += "<br>";
+            }
+            if (validSignUp) {
+                errorBox.style.border = "1px solid black";
+                errorBox.innerHTML = "Signup successful! Redirecting to login...";
+
+                let countdown = 2;
+                let interval = setInterval(redirecting, 1000);
+
+                function redirecting() {
+                    if (countdown === 0) {
+                        clearInterval(interval);
+                        window.location.href = "login.html";
+                    } else {
+                        countdown--;
+                    }
+                };
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <img src="logo.jpg" alt="LMS Logo" style="width: 100px; height: 100px;">
+        <h1>LMS - Learning Management System</h1>
+    </header>
+    
+    <div>
+        <nav>
+            <a href="index.html">Homepage</a>
+        </nav>
+    </div>
+    
+    <main class="loginsignup">
+        <h2>Sign Up</h2>
+        <form>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username"><br>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password"><br>
+            
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password"><br>
+            
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email"><br>
+            
+            <button type="button" class="signup_button" onclick="validateForm()">Sign Up</button>
+        </form>
+        <div id="error-box"></div>
+        <br>
+        <a href="login.html">Already have an account? Login here</a>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 LMS. All rights reserved.</p>
+    </footer>
+</body>
+</html>
