@@ -23,49 +23,85 @@
             let passwordErrors = ["Invalid Password: "];
             let emailErrors = ["Invalid Email: "];
 
-            // Regex patterns
-            let usernameRegex = /^[A-Za-z][A-Za-z0-9_-]{2,19}$/;
-            let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+\[\]{}|;:'",.<>?/`~]).{8,}$/;
-            let emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
-
-            if (username === "" || password === "" || confirmPassword == "" || email === "") {
-                errorBox.style.border = "1px solid black";
-                errorBox.innerHTML = "All fields are required.";
-                return;
-            }
-
             // Username Validation
-            if (username.length < 3 || username.length > 20) {usernameErrors.push("Must be 3-20 characters.");}
-            if (!/^[A-Za-z]/.test(username)) {usernameErrors.push("Must start with a letter.");}
+            if (username.length < 3 || username.length > 20) {
+                usernameErrors.push("Must be 3-20 characters.");
+            }
+            if (!(username[0] >= 'A' && username[0] <= 'Z') && !(username[0] >= 'a' && username[0] <= 'z')) {
+                usernameErrors.push("Must start with a letter.");
+            }
             for (let i = 0; i < username.length; i++) {
                 let char = username[i];
-                if (!(/[A-Za-z0-9_-]/.test(char))) {
-                    usernameErrors.push("Can only include letters, numbers, hyphens (-), and underscores (_).");
+                if (char === ' ') {
+                    usernameErrors.push("Cannot contain spaces.");
+                }
+                if (!((char >= 'A' && char <= 'Z') || (char >= 'a' && char <= 'z') || (char >= '0' && char <= '9') || char === '-' || char === '_')) {
+                    usernameErrors.push("Can only include letters, numbers, hyphens (-), and underscores (_). ");
                     break;
                 }
             }
 
             // Password Validation
-            let hasUpper = false, hasLower = false, hasNumber = false, hasSpecial = false;
+            let hasUpper = false, hasLower = false, hasNumber = false, hasSpecial = false, hasSpace = false;
+            const specialChars = "!@#$%^&*()-_=+[]{}|;:'\",.<>?/`~";
+
             for (let i = 0; i < password.length; i++) {
                 let char = password[i];
-                if (/[A-Z]/.test(char)) hasUpper = true;
-                if (/[a-z]/.test(char)) hasLower = true;
-                if (/\d/.test(char)) hasNumber = true;
-                if (/[!@#$%^&*()\-_=+\[\]{}|;:'",.<>?/`~]/.test(char)) hasSpecial = true;
+                if (char >= 'A' && char <= 'Z') {hasUpper = true;}
+                if (char >= 'a' && char <= 'z') {hasLower = true;}
+                if (char >= '0' && char <= '9') {hasNumber = true;}
+                for (let j = 0; j < specialCharacters.length; j++) {
+                    if (char === specialCharacters[j]) {
+                        hasSpecial = true;
+                        break;
+                    }
+                }
+                if (char === ' ') {hasSpace = true;}
             }
 
-            if (password.length < 8) {passwordErrors.push("Must be at least 8 characters.")};
-            if (!hasUpper) {passwordErrors.push("Must contain an uppercase letter.")};
-            if (!hasLower) {passwordErrors.push("Must contain a lowercase letter.")};
-            if (!hasNumber) {passwordErrors.push("Must contain a number.")};
-            if (!hasSpecial) {passwordErrors.push("Must contain a special character.")};
-            if (password.includes(" ")) {passwordErrors.push("Cannot contain spaces.")};
+            if (password.length < 8) {passwordErrors.push("Must be at least 8 characters.");}
+            if (!hasUpper) {passwordErrors.push("Must contain an uppercase letter.");}
+            if (!hasLower) {passwordErrors.push("Must contain a lowercase letter.");}
+            if (!hasNumber) {passwordErrors.push("Must contain a number.");}
+            if (!hasSpecial) {passwordErrors.push("Must contain a special character.");}
+            if (hasSpace) {passwordErrors.push("Cannot contain spaces.");}
 
             // Email Validation
-            if (email.includes(" ")) {emailErrors.push("Cannot contain spaces.");} 
-            if (!/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(email)) {emailErrors.push("Must be in the form 'example@domain.com'.");}
+            let hasEmailSpace = false;
+            let atCount = 0;
+            let atPosition = -1;
+            let lastDotPosition = -1;
+            let validDomain = false;
 
+            // Step 1: Scan the email character by character
+            for (let i = 0; i < email.length; i++) {
+                let char = email[i];
+
+                if (char === ' ') {
+                    hasEmailSpace = true;
+                } else if (char === '@') {
+                    atCount++;
+                    if (atPosition === -1) { 
+                        atPosition = i; // First occurrence of '@'
+                    }
+                } else if (char === '.' && atPosition !== -1) { 
+                    lastDotPosition = i; // Last '.' after '@'
+                }
+            }
+
+            if (hasEmailSpace) {emailErrors.push("Cannot contain spaces.");}
+
+            if (atCount !== 1 || dotCount < 1 || atPosition < 1 || lastDotPosition <= atPosition + 1 || lastDotPosition >= email.length - 3) {
+                emailErrors.push("Must be of a valid email address format.");
+            } else {
+                let tld = "";
+                for (let i = lastDotPosition + 1; i < email.length; i++) {
+                    tld += email[i];
+                }
+                if (!(tld === "com" || tld === "net" || tld === "io")) {
+                    emailErrors.push("Must end with .com, .net, or .io.");
+                }
+            }
             // Display all errors
             validSignUp = true;
             if (usernameErrors.length > 1) {
