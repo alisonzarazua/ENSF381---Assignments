@@ -47,16 +47,24 @@ nav a:hover {
 }
 
 /* Main Content */
-main[class="login"], main[class="index"] {
+main[class="loginsignup"], main[class="index"] {
     padding: 20px;
     text-align: center;
     align-items: center;
-    
     margin: 20px auto;
     max-width: 90%;
 }
 
-/* Login Form */
+main a[href="#"]{
+    color: #004080;
+    text-decoration: none;
+}
+
+main a[href="#"]:hover {
+    text-decoration: underline;
+}
+
+/* Login and Signup Form */
 form {
     display: flex;
     flex-direction: column;
@@ -78,8 +86,8 @@ input[type="text"], input[type="password"] {
     background-color: lightyellow;
 }
 
-/* Buttons */
-main button {
+/* Login Button */
+button.login_button {
     background-color: #008000;
     color: white;
     padding: 10px 15px;
@@ -89,17 +97,30 @@ main button {
     border-radius: 5px;
 }
 
-main button:hover {
+button.login_button:hover {
     background-color: #006600;
 }
 
-main a[href="#"]{
-    color: #004080;
-    text-decoration: none;
+/* Signup Button */
+button.signup_button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+    opacity: 0.5;
 }
 
-main a[href="#"]:hover {
-    text-decoration: underline;
+button.signup_button:hover {
+    background-color: #45A049;
+    opacity: 1.0;
+}
+
+/* Error Messages */
+#error-box {
+    margin: 10px;
+    padding: 10px;
 }
 
 /* Course View */
