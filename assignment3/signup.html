@@ -19,6 +19,12 @@
             let errorBox = document.getElementById("error-box");
             errorBox.innerHTML = "";
 
+            if (username === "" || password === "" || confirmPassword == "" || email === "") {
+                errorBox.style.border = "1px solid black";
+                errorBox.innerHTML = "All fields are required.";
+                return;
+            }
+
             let usernameErrors = ["Invalid Username: "];
             let passwordErrors = ["Invalid Password: "];
             let emailErrors = ["Invalid Email: "];
